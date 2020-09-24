@@ -1,0 +1,71 @@
+arena:
+  info: "場地 <arena> 的資訊: "
+  not-exist: "場地 <arena> 不存在。"
+  exist: "場地 <arena> 已經存在。"
+  unchanged: "場地 <arena> 沒有做過任何變更。"
+  setup-not-completed: "場地 <arena> 尚未完成設置。"
+  backing-up: "正在備份場地 <arena> ..."
+  not-back-up: "遊戲場地恢復機制已啟用，而場地 <arena> 尚未備份!"
+  backup-complete: "場地 <arena> 已成功備份至 <path>。"
+  backup-not-allowed: "遊戲場地恢復機制已禁用，因此你無法備份地圖。"
+  lobby-not-default: "你所設置的大堂位置不是默認世界的位置!"
+  name-exist: "名稱 <arena> 已存在!"
+  world-contain-arena: "同一個世界內存在多於一個場地是不允許的。"
+  warp:
+    exist: "坐標 <warp> 已經存在。"
+    not-exist: "坐標 <warp> 不存在。"
+    illegal: "此坐標 <warp> 無效, 允許設置的坐標列表:&f <list>"
+  result:
+    success: "操作成功。"
+    fail: "操作失敗。"
+  location:
+    max-reached: "此地標 <warp> 已達到最大位置設置數。"
+    no-locations: "此地標 <warp> 沒有可用的位置。"
+  kick-not-loaded: "&c場地加載尚未完成!"
+  no-more-line: "&c此場地 <arena> 的地圖描述已沒有更多行數。"
+
+game-not-stopped: "&c你無法在遊戲運行期間使用場地設置指令。"
+game-is-ending: "&c遊戲正在邁向完結。"
+game-not-loaded: "&c遊戲尚未加載完成。"
+
+gamestats-not-found: "&a你只能查看遊戲中的玩家的戰績。"
+gamestats-info: "&a<player> 的戰績:"
+
+player-join: "&a<player> &7已加入。"
+need-players: "距離開始還需要 &b<remain> &7位玩家。"
+
+vote:
+  success: "&a投票成功!"
+  already-voted: "&7你目前已選擇了 &a<map>&7 為你投票地圖。"
+
+death-msg:
+  fall: "摔死了"
+  void: "掉進虛空"
+  block-explode: "被炸死了"
+  fire: "被燒死了"
+  potion: "被藥水殺死了"
+  suicide: "自殺了"
+  melting: "融化了"
+  magic: "被未知殺死"
+  dryout: "乾死了"
+  drawn: "淹死了"
+  no-oxygen: "窒息致死"
+  lightning: "電死了"
+  thorns: "被刺死了"
+  hunger: "餓死了"
+  unknown: "已死亡"
+  action:
+    tntprimed: "炸死了"
+    gun: "槍斃了"
+    normal: "殺死了"
+    potion: "用藥水殺死了"
+    arrow: "射死了"
+
+spectate-not-gamer: "&c對方已經不再是遊戲玩家。"
+
+time:
+  sec: " &7秒"
+  min: " &7分鐘"
+  hour: " &7小時"
+  day: " &7日"
+  split: ", &a"

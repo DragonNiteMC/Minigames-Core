@@ -1,0 +1,11 @@
+name: Minigames-Core
+main: com.ericlam.mc.minigames.core.main.MinigamesCore
+version: ${project.version}
+depend: [ HyperNiteMC-Core ]
+softdepend:
+  - CrackShot
+  - CrackShotPlus
+api-version: "1.16"
+commands:
+  mgcore:
+    description: minigame core command

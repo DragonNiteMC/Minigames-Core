@@ -1,0 +1,32 @@
+voteItem:
+  material: MAP
+  slot: 0
+  name: "&e投票地圖"
+  lore:
+    - "&a右鍵打開投票選單"
+
+mapItem:
+  material: PAPER
+  name: "&b<name>"
+  lore:
+    - "&a作者: <author>"
+    - "&e描述:"
+
+tpItem:
+  material: PLAYER_HEAD
+  name: "&e玩家傳送"
+  slot: 0
+  lore:
+    - "&e右鍵打開傳送菜單"
+
+headItem:
+  name: "&e<name>"
+  lore:
+    - "&e點我傳送"
+
+invItem:
+  material: CHEST
+  name: "&e查看玩家背包"
+  slot: 8
+  lore:
+    - "&e點擊打開你正在第一人稱觀戰中的玩家的背包。"

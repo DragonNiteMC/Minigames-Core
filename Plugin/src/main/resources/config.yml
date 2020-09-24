@@ -1,0 +1,28 @@
+# 是否允許一個世界內存在多於一個場地
+allowMultiArenaInOneWorld: false
+
+# 是否一開始啟動遊戲
+lunchGameOnStart: false
+
+# 是否不允許 API 方控制戰績加減
+gameStatsControl:
+  disable-kills: false
+  disable-wins: false
+  disable-deaths: false
+  disable-save: false
+  disable-played: false
+
+forceStartTime: 10
+
+damageMultiplier:
+  # 是否不允許放大傷害
+  disable: false
+  # 最大放大傷害值
+  maxDamage: 100
+
+interactInventory:
+  whitelist: true
+  list:
+    - PLAYER
+    - ENDER_CHEST
+    - CHEST

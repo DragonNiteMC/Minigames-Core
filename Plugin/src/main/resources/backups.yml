@@ -1,0 +1,4 @@
+# 是否啟用地圖恢復機制
+arenaBackupEnabled: false
+# 上次加載的地圖
+lastLoadedArena: ""
