@@ -1,10 +1,12 @@
 package com.ericlam.mc.minigames.core.manager;
 
+import com.comphenix.protocol.ProtocolLibrary;
 import com.ericlam.mc.minigames.core.GameRestartRunnable;
 import com.ericlam.mc.minigames.core.arena.ArenaConfig;
 import com.ericlam.mc.minigames.core.character.GamePlayer;
 import com.ericlam.mc.minigames.core.event.section.*;
 import com.ericlam.mc.minigames.core.event.state.GameStateSwitchEvent;
+import com.ericlam.mc.minigames.core.factory.scoboard.IndividualScorePacketListener;
 import com.ericlam.mc.minigames.core.game.GameState;
 import com.ericlam.mc.minigames.core.game.GameTeam;
 import com.ericlam.mc.minigames.core.game.InGameState;
@@ -71,7 +73,12 @@ public final class CoreGameManager implements GameManager {
                 ((CoreInventoryManager) inventoryManager).loadVoteInventory(lobbyManager);
                 ((CoreGameItemManager) gameItemManager).loadVoteItem((CoreInventoryManager) inventoryManager);
                 plugin.getServer().getPluginManager().registerEvents(new GameListener((MinigamesCore) plugin), plugin);
-                if (plugin.getServer().getPluginManager().getPlugin("CrackShot") != null) {
+                if (MinigamesCore.isPacketWrapperEnabled()) {
+                    plugin.getLogger().info("PacketWrapper is enabled. Enabled individual score in scoreboard.");
+                    ProtocolLibrary.getProtocolManager().addPacketListener(new IndividualScorePacketListener(plugin));
+                }
+                if (MinigamesCore.isCrackShotPlusEnabled()) {
+                    plugin.getLogger().info("CrackShotPlus is enabled. Enabled CrackShotListener");
                     plugin.getServer().getPluginManager().registerEvents(new CrackshotListener((MinigamesCore) plugin), plugin);
                 }
                 plugin.getLogger().info("Game Activated");

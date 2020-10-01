@@ -1,8 +1,11 @@
 package com.ericlam.mc.minigames.core.factory.scoreboard;
 
+import com.ericlam.mc.minigames.core.character.GamePlayer;
 import com.ericlam.mc.minigames.core.factory.Factory;
 import com.ericlam.mc.minigames.core.game.GameTeam;
 import org.bukkit.scoreboard.Team;
+
+import java.util.function.BiFunction;
 
 /**
  * 計分版工廠
@@ -56,6 +59,25 @@ public interface ScoreboardFactory extends Factory<GameBoard> {
      * @return this
      */
     ScoreboardFactory addLine(String text, int score);
+
+
+    /**
+     * 添加個人的計分版內容(每個玩家顯示的文字都不同)
+     *
+     * @param text    標識文字, 支援顏色
+     * @param score   分數
+     * @param applier 根據 玩家 和 標識文字 最後產生的 顯示文字
+     * @return this
+     */
+    ScoreboardFactory addLine(String text, int score, BiFunction<GamePlayer, String, String> applier);
+
+    /**
+     * 個人計分版內容更新頻率，默認為10秒, 最低為 10 ticks
+     *
+     * @param ticks 更新頻率
+     * @return this
+     */
+    ScoreboardFactory setUpdateInterval(long ticks);
 
 
 }

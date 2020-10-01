@@ -1,5 +1,9 @@
 package com.ericlam.mc.minigames.core.factory.scoboard;
 
+import com.comphenix.packetwrapper.WrapperPlayServerScoreboardScore;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.wrappers.EnumWrappers;
 import com.ericlam.mc.minigames.core.character.GamePlayer;
 import com.ericlam.mc.minigames.core.character.TeamPlayer;
 import com.ericlam.mc.minigames.core.factory.scoreboard.GameBoard;
@@ -9,35 +13,41 @@ import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.google.common.collect.ImmutableMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public final class CoreGameBoard implements GameBoard {
 
     private final Map<String, GameEntry<String, Integer>> sidebarLine;
+    private final Set<IndividualScore> individualSideBarLine;
     private final Map<GameTeam, Map<Team.Option, Team.OptionStatus>> optionMap;
+    private final Set<GamePlayer> boardPlayers = new HashSet<>();
     private final Scoreboard scoreboard;
     private final GameTeam globalTeam;
     private final Objective objective;
+    private BukkitTask updateTask;
 
-    CoreGameBoard(Map<String, GameEntry<String, Integer>> sidebarLine, Map<GameTeam, Map<Team.Option, Team.OptionStatus>> optionMap, Scoreboard scoreboard) {
+    CoreGameBoard(Map<String, GameEntry<String, Integer>> sidebarLine, Set<IndividualScore> individualSideBarLine, Map<GameTeam, Map<Team.Option, Team.OptionStatus>> optionMap, Scoreboard scoreboard, long updateTicks) {
         globalTeam = MinigamesCore.getPlugin(MinigamesCore.class).getGlobalTeam();
         optionMap.putIfAbsent(globalTeam, new HashMap<>());
         optionMap.get(globalTeam).putIfAbsent(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.FOR_OWN_TEAM);
         optionMap.get(globalTeam).putIfAbsent(Team.Option.DEATH_MESSAGE_VISIBILITY, Team.OptionStatus.NEVER);
         optionMap.get(globalTeam).putIfAbsent(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
         this.sidebarLine = sidebarLine;
+        this.individualSideBarLine = individualSideBarLine;
         this.optionMap = optionMap;
         this.scoreboard = scoreboard;
         this.objective = scoreboard.getObjective(DisplaySlot.SIDEBAR);
+        individualSideBarLine.forEach(s -> IndividualScorePacketListener.registerScore(s.getText(), s));
+        if (!individualSideBarLine.isEmpty() && MinigamesCore.isPacketWrapperEnabled()) {
+            this.updateTask = new IndividualUpdateRunnable(this).runTaskTimer(MinigamesCore.getProvidingPlugin(MinigamesCore.class), 0L, updateTicks);
+        }
     }
 
     @Override
@@ -55,6 +65,31 @@ public final class CoreGameBoard implements GameBoard {
         else return;
         Team t = getOrCreateTeam(newTeam);
         t.addEntry(player.getPlayer().getName());
+    }
+
+    @Override
+    public void updateIndividual(GamePlayer player) {
+        var p = player.getPlayer();
+        if (!p.isOnline() || !boardPlayers.contains(player)) return;
+        individualSideBarLine.forEach(iscore -> {
+            var wrapper = new WrapperPlayServerScoreboardScore(new PacketContainer(PacketType.Play.Server.SCOREBOARD_SCORE));
+            wrapper.setScoreboardAction(EnumWrappers.ScoreboardAction.REMOVE);
+            wrapper.setScoreName(iscore.getText());
+            wrapper.setObjectiveName(objective.getName());
+            wrapper.sendPacket(p);
+
+            wrapper = new WrapperPlayServerScoreboardScore(new PacketContainer(PacketType.Play.Server.SCOREBOARD_SCORE));
+            wrapper.setScoreboardAction(EnumWrappers.ScoreboardAction.CHANGE);
+            wrapper.setScoreName(iscore.getText());
+            wrapper.setObjectiveName(objective.getName());
+            wrapper.setValue(iscore.getScore());
+            wrapper.sendPacket(p);
+        });
+    }
+
+    @Override
+    public void updateIndividual() {
+        boardPlayers.forEach(this::updateIndividual);
     }
 
     @Nonnull
@@ -82,6 +117,8 @@ public final class CoreGameBoard implements GameBoard {
         if (t.getEntries().contains(player.getPlayer().getName())) return;
         t.addEntry(player.getPlayer().getName());
         player.getPlayer().setScoreboard(scoreboard);
+        boardPlayers.add(player);
+        updateIndividual(player);
     }
 
     @Override
@@ -96,6 +133,7 @@ public final class CoreGameBoard implements GameBoard {
         t.removeEntry(player.getPlayer().getName());
         if (t.getEntries().size() == 0) t.unregister();
         player.getPlayer().setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+        boardPlayers.remove(player);
     }
 
     @Override
@@ -136,6 +174,7 @@ public final class CoreGameBoard implements GameBoard {
     @Override
     public void destroy() {
         MinigamesCore.getApi().getPlayerManager().getTotalPlayers().forEach(this::removePlayer);
+        if (updateTask != null && !updateTask.isCancelled()) updateTask.cancel();
         scoreboard.clearSlot(DisplaySlot.SIDEBAR);
         scoreboard.getTeams().forEach(Team::unregister);
         scoreboard.getObjectives().forEach(Objective::unregister);

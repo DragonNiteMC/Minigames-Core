@@ -4,11 +4,10 @@
     <parent>
         <groupId>com.hypernite.mc</groupId>
         <artifactId>minigames-core</artifactId>
-        <version>0.1.12</version>
+        <version>0.1.13</version>
     </parent>
 
     <artifactId>Plugin</artifactId>
-    <version>0.1.12.7</version>
 
 
     <dependencies>
@@ -29,6 +28,14 @@
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>protocolib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>PacketWrapper</artifactId>
         </dependency>
     </dependencies>
 

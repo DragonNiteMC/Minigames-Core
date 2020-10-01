@@ -70,6 +70,18 @@ public interface GameBoard {
     void setLine(String key, String line, int score);
 
     /**
+     * 更新特定玩家的個人所屬顯示
+     *
+     * @param player 玩家
+     */
+    void updateIndividual(GamePlayer player);
+
+    /**
+     * 更新所有玩家的個人所屬顯示
+     */
+    void updateIndividual();
+
+    /**
      * 銷毀計分版，此動作將無法復原。
      */
     void destroy();

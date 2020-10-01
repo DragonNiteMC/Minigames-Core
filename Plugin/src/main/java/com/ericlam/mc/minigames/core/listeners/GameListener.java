@@ -21,8 +21,6 @@ import com.ericlam.mc.minigames.core.implement.TimingsSender;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.ericlam.mc.minigames.core.manager.*;
 import com.hypernite.mc.hnmc.core.managers.YamlManager;
-import com.shampaggon.crackshot.CSDirector;
-import com.shampaggon.crackshot.CSUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
@@ -216,14 +214,7 @@ public final class GameListener implements Listener {
         }
         if (!(entity instanceof Player)) return;
         Player killer = (Player) entity;
-        if (e.getDamager() instanceof Projectile) {
-            Projectile bullet = (Projectile) e.getDamager();
-            if (new CSUtility().getWeaponTitle(bullet) != null) {
-                return;
-            }
-        } else if (CSDirector.getPlugin(CSDirector.class).returnParentNode(killer) != null) {
-            return;
-        }
+        if (MinigamesCore.isCrackShotPlusEnabled() && CrackshotListener.isCrackShot(killer, e.getDamager())) return;
         if (e.getFinalDamage() < victim.getHealth()) return;
         e.setCancelled(true);
         GamePlayer gameKiller = playerManager.findPlayer(killer).orElse(null);

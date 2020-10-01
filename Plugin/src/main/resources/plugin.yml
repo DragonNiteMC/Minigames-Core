@@ -5,6 +5,7 @@ depend: [ HyperNiteMC-Core ]
 softdepend:
   - CrackShot
   - CrackShotPlus
+  - PacketWrapper
 api-version: "1.16"
 commands:
   mgcore:

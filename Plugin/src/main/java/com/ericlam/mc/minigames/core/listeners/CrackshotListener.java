@@ -5,9 +5,13 @@ import com.ericlam.mc.minigames.core.event.player.CrackShotDeathEvent;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.ericlam.mc.minigames.core.manager.GameManager;
 import com.ericlam.mc.minigames.core.manager.PlayerManager;
+import com.shampaggon.crackshot.CSDirector;
+import com.shampaggon.crackshot.CSUtility;
 import com.shampaggon.crackshot.events.WeaponDamageEntityEvent;
+import me.DeeCaaD.CrackShotPlus.API;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -20,11 +24,20 @@ public final class CrackshotListener implements Listener {
     private final GameManager gameManager;
     private final PlayerManager playerManager;
     private final MinigamesCore api;
+    private static final CSDirector csd = CSDirector.getPlugin(CSDirector.class);
+    private static final CSUtility csu = API.getCSUtility();
 
     public CrackshotListener(@Nonnull MinigamesCore api) {
         this.api = api;
         this.gameManager = api.getGameManager();
         this.playerManager = api.getPlayerManager();
+    }
+
+    static boolean isCrackShot(Player killer, Entity damager) {
+        if (damager instanceof Projectile) {
+            Projectile bullet = (Projectile) damager;
+            return csu.getWeaponTitle(bullet) != null;
+        } else return csd.returnParentNode(killer) != null;
     }
 
 
