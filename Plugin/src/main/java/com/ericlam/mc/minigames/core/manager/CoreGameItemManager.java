@@ -9,7 +9,7 @@ import com.ericlam.mc.minigames.core.implement.GlobalTeam;
 import com.ericlam.mc.minigames.core.injection.GameItems;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.google.inject.Inject;
-import com.hypernite.mc.hnmc.core.builders.ItemStackBuilder;
+import com.dragonnite.mc.dnmc.core.builders.ItemStackBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

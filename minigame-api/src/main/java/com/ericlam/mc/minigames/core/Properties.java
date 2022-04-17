@@ -1,7 +1,7 @@
 package com.ericlam.mc.minigames.core;
 
 import com.ericlam.mc.minigames.core.factory.GameFactory;
-import com.hypernite.mc.hnmc.core.config.MessageGetter;
+import com.dragonnite.mc.dnmc.core.config.MessageGetter;
 
 /**
  * 獲取其他設定

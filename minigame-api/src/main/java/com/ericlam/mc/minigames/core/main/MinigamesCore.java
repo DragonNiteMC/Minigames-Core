@@ -7,7 +7,7 @@ import com.ericlam.mc.minigames.core.manager.*;
 import com.ericlam.mc.minigames.core.registable.Compulsory;
 import com.ericlam.mc.minigames.core.registable.Registration;
 import com.ericlam.mc.minigames.core.registable.Voluntary;
-import com.hypernite.mc.hnmc.core.config.MessageGetter;
+import com.dragonnite.mc.dnmc.core.config.MessageGetter;
 
 import java.util.Optional;
 

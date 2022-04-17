@@ -1,6 +1,6 @@
 package com.ericlam.mc.minigames.core.commands;
 
-import com.hypernite.mc.hnmc.core.misc.commands.DefaultCommand;
+import com.dragonnite.mc.dnmc.core.misc.commands.DefaultCommand;
 
 public final class MinigameCommand extends DefaultCommand {
     public MinigameCommand() {

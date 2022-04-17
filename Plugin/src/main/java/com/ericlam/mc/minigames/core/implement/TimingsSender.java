@@ -1,9 +1,10 @@
 package com.ericlam.mc.minigames.core.implement;
 
 import com.ericlam.mc.minigames.core.commands.TpsRecordCommand;
-import com.hypernite.mc.hnmc.core.main.HyperNiteMC;
-import com.hypernite.mc.hnmc.core.managers.SQLDataSource;
-import com.hypernite.mc.hnmc.core.misc.permission.Perm;
+import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
+import com.dragonnite.mc.dnmc.core.managers.SQLDataSource;
+import com.dragonnite.mc.dnmc.core.misc.permission.Perm;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permission;
@@ -12,11 +13,13 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +34,7 @@ public final class TimingsSender implements CommandSender {
     private final SQLDataSource sqlDataSource;
 
     public TimingsSender() {
-        this.sqlDataSource = HyperNiteMC.getAPI().getSQLDataSource();
+        this.sqlDataSource = DragonNiteMC.getAPI().getSQLDataSource();
         CompletableFuture.runAsync(() -> {
             try (Connection connection = sqlDataSource.getConnection();
                  PreparedStatement statement = connection.prepareStatement(createTable)) {
@@ -96,6 +99,16 @@ public final class TimingsSender implements CommandSender {
         }
     }
 
+    @Override
+    public void sendMessage(@Nullable UUID uUID, @Nonnull String string) {
+        throw new UnsupportedOperationException("Only for timings");
+    }
+
+    @Override
+    public void sendMessage(@Nullable UUID uUID, @Nonnull String... strings) {
+        throw new UnsupportedOperationException("Only for timings");
+    }
+
     @Nonnull
     @Override
     public Server getServer() {
@@ -111,6 +124,12 @@ public final class TimingsSender implements CommandSender {
     @Nonnull
     @Override
     public Spigot spigot() {
+        throw new UnsupportedOperationException("Only for timings");
+    }
+
+    @Nonnull
+    @Override
+    public Component name() {
         throw new UnsupportedOperationException("Only for timings");
     }
 

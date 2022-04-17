@@ -4,7 +4,7 @@ import com.ericlam.mc.minigames.core.character.GamePlayer;
 import com.ericlam.mc.minigames.core.function.CircularIterator;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.google.inject.Inject;
-import com.hypernite.mc.hnmc.core.config.MessageGetter;
+import com.dragonnite.mc.dnmc.core.config.MessageGetter;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

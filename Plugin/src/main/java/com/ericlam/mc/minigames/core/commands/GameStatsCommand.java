@@ -4,10 +4,10 @@ import com.ericlam.mc.minigames.core.MinigamesAPI;
 import com.ericlam.mc.minigames.core.config.LangConfig;
 import com.ericlam.mc.minigames.core.exception.gamestats.PlayerNotExistException;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
-import com.hypernite.mc.hnmc.core.main.HyperNiteMC;
-import com.hypernite.mc.hnmc.core.managers.CoreConfig;
-import com.hypernite.mc.hnmc.core.managers.YamlManager;
-import com.hypernite.mc.hnmc.core.misc.commands.CommandNode;
+import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
+import com.dragonnite.mc.dnmc.core.managers.CoreConfig;
+import com.dragonnite.mc.dnmc.core.managers.YamlManager;
+import com.dragonnite.mc.dnmc.core.misc.commands.CommandNode;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -26,7 +26,7 @@ public final class GameStatsCommand extends CommandNode {
 
     @Override
     public boolean executeCommand(@Nonnull CommandSender commandSender, @Nonnull List<String> list) {
-        CoreConfig coreConfig = HyperNiteMC.getAPI().getCoreConfig();
+        CoreConfig coreConfig = DragonNiteMC.getAPI().getCoreConfig();
         Player target;
         if (list.size() < 1) {
             if (!(commandSender instanceof Player)) {

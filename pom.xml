@@ -13,8 +13,8 @@
 
     <repositories>
         <repository>
-            <id>chu77</id>
-            <url>https://nexus.chu77.xyz/repository/developer/</url>
+            <id>dragonnite</id>
+            <url>https://nexus.pulogo.xyz/repository/developer/</url>
         </repository>
         <repository>
             <id>jitpack.io</id>
@@ -24,12 +24,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.hypernite.mc</groupId>
+            <groupId>com.dragonnite.mc</groupId>
             <artifactId>core-api</artifactId>
         </dependency>
         <dependency>
             <groupId>patched</groupId>
-            <artifactId>1.16</artifactId>
+            <artifactId>1.17.1</artifactId>
         </dependency>
     </dependencies>
 
@@ -38,7 +38,7 @@
             <dependency>
                 <groupId>org.spigotmc</groupId>
                 <artifactId>protocolib</artifactId>
-                <version>4.6.0</version>
+                <version>4.8.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -50,7 +50,7 @@
             <dependency>
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
-                <version>4.2.2</version>
+                <version>5.1.0</version>
                 <scope>provided</scope>
                 <optional>true</optional>
                 <exclusions>
@@ -66,26 +66,26 @@
             </dependency>
             <dependency>
                 <groupId>patched</groupId>
-                <artifactId>1.16</artifactId>
-                <version>r2</version>
+                <artifactId>1.17.1</artifactId>
+                <version>r1</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.spigotmc</groupId>
                 <artifactId>crackshot</artifactId>
-                <version>0.89.9</version>
+                <version>0.98.11</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.spigotmc</groupId>
                 <artifactId>crackshotplus</artifactId>
-                <version>1.95</version>
+                <version>1.105</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>com.hypernite.mc</groupId>
+                <groupId>com.dragonnite.mc</groupId>
                 <artifactId>core-api</artifactId>
-                <version>7.6.4</version>
+                <version>7.6.5</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>
@@ -116,7 +116,7 @@
                     <configuration>
                         <links>
                             <link>https://hub.spigotmc.org/javadocs/spigot/</link>
-                            <link>https://eric2788.github.io/core-api/</link>
+                            <link>https://hypernitemc.github.io/core-api/</link>
                             <link>https://guava.dev/releases/23.0/api/docs/</link>
                         </links>
                         <javadocExecutable>${java.home}\bin\javadoc.exe</javadocExecutable>
@@ -131,7 +131,7 @@
                         <version>true</version>
                         <linksource>true</linksource>
                         <notimestamp>true</notimestamp>
-                        <bottom><![CDATA[<b>© HyperNiteMC - 2020</b>]]></bottom>
+                        <bottom><![CDATA[<b>© DragonNiteMC - 2022</b>]]></bottom>
                         <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
                         <destDir>../docs</destDir>
                     </configuration>

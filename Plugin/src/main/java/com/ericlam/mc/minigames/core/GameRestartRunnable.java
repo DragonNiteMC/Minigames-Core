@@ -2,10 +2,10 @@ package com.ericlam.mc.minigames.core;
 
 import com.ericlam.mc.minigames.core.arena.Arena;
 import com.ericlam.mc.minigames.core.arena.ArenaConfig;
-import com.hypernite.mc.hnmc.core.main.HyperNiteMC;
-import com.hypernite.mc.hnmc.core.managers.CoreScheduler;
-import com.hypernite.mc.hnmc.core.managers.WorldManager;
-import com.hypernite.mc.hnmc.core.misc.world.WorldNonExistException;
+import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
+import com.dragonnite.mc.dnmc.core.managers.CoreScheduler;
+import com.dragonnite.mc.dnmc.core.managers.WorldManager;
+import com.dragonnite.mc.dnmc.core.misc.world.WorldNonExistException;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -18,7 +18,7 @@ public final class GameRestartRunnable extends BukkitRunnable {
     private long timeout;
 
     public GameRestartRunnable(Arena finalArena, ArenaConfig arenaConfig, long timeout) {
-        var api = HyperNiteMC.getAPI();
+        var api = DragonNiteMC.getAPI();
         this.finalArena = finalArena;
         this.arenaConfig = arenaConfig;
         this.timeout = timeout * 20;

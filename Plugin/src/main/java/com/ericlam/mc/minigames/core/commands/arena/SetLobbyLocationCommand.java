@@ -2,8 +2,8 @@ package com.ericlam.mc.minigames.core.commands.arena;
 
 import com.ericlam.mc.minigames.core.manager.ArenaCreateManager;
 import com.ericlam.mc.minigames.core.manager.CoreArenaCreateManager;
-import com.hypernite.mc.hnmc.core.managers.YamlManager;
-import com.hypernite.mc.hnmc.core.misc.commands.CommandNode;
+import com.dragonnite.mc.dnmc.core.managers.YamlManager;
+import com.dragonnite.mc.dnmc.core.misc.commands.CommandNode;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
