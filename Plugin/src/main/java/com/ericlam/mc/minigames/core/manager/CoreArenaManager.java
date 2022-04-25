@@ -18,6 +18,8 @@ import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
 import com.dragonnite.mc.dnmc.core.managers.YamlManager;
 import com.dragonnite.mc.dnmc.core.misc.world.WorldLoadedException;
 import com.dragonnite.mc.dnmc.core.misc.world.WorldNonExistException;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
@@ -25,8 +27,6 @@ import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.FilenameUtils;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
@@ -90,7 +90,7 @@ public final class CoreArenaManager implements ArenaManager {
                 }
             });
         }
-        arenas.stream().filter(a -> !a.getArenaName().equals(finalArena.getArenaName())).forEach(remainArena -> Bukkit.getScheduler().runTask(plugin, () -> {
+        arenas.stream().filter(a -> !a.getWorld().equals(finalArena.getWorld())).forEach(remainArena -> Bukkit.getScheduler().runTask(plugin, () -> {
             World world = remainArena.getWorld();
             try {
                 boolean result = DragonNiteMC.getAPI().getWorldManager().unloadWorld(world.getName());

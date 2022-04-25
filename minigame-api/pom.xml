@@ -2,9 +2,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.hypernite.mc</groupId>
+        <groupId>com.dragonnite.mc</groupId>
         <artifactId>minigames-core</artifactId>
-        <version>0.1.13</version>
+        <version>0.1.14</version>
     </parent>
 
     <artifactId>minigame-api</artifactId>

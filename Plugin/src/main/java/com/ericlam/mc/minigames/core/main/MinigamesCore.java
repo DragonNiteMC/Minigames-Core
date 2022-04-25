@@ -10,6 +10,7 @@ import com.ericlam.mc.minigames.core.config.BackupConfig;
 import com.ericlam.mc.minigames.core.config.ItemConfig;
 import com.ericlam.mc.minigames.core.config.LangConfig;
 import com.ericlam.mc.minigames.core.config.MGConfig;
+import com.ericlam.mc.minigames.core.event.state.GameStateSwitchEvent;
 import com.ericlam.mc.minigames.core.exception.APINotActivatedException;
 import com.ericlam.mc.minigames.core.factory.CoreGameFactory;
 import com.ericlam.mc.minigames.core.factory.GameFactory;
@@ -33,8 +34,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import redis.clients.jedis.Jedis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public final class MinigamesCore extends JavaPlugin implements MinigamesAPI, Registration, Properties, Listener {
@@ -279,6 +283,17 @@ public final class MinigamesCore extends JavaPlugin implements MinigamesAPI, Reg
             e.disallow(PlayerLoginEvent.Result.KICK_OTHER, lang.getPure("game-is-ending"));
         } else if (!((CoreGameManager) gameManager).isActivated()) {
             e.disallow(PlayerLoginEvent.Result.KICK_OTHER, lang.getPure("game-not-loaded"));
+        }
+    }
+
+    @EventHandler
+    public void onGameStateSwitch(GameStateSwitchEvent e) {
+        try (Jedis jedis = DragonNiteMC.getAPI().getRedisDataSource().getJedis()) {
+            Map<String, String> map = new HashMap<>();
+            String serverName = System.getenv("SERVER_NAME");
+            map.put(serverName, e.getGameState().toString());
+            MinigamesCore.getPlugin(MinigamesCore.class).getLogger().warning("Map：" + map.toString());
+            jedis.hmset("game_room_states", map);
         }
     }
 
