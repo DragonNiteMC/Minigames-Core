@@ -5,10 +5,10 @@ import com.ericlam.mc.minigames.core.exception.arena.create.ArenaNotExistExcepti
 import com.ericlam.mc.minigames.core.game.GameState;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.ericlam.mc.minigames.core.manager.ArenaCreateManager;
-import com.dragonnite.mc.dnmc.core.config.MessageGetter;
-import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
-import com.dragonnite.mc.dnmc.core.managers.CoreConfig;
-import com.dragonnite.mc.dnmc.core.misc.commands.CommandNode;
+import com.dragonite.mc.dnmc.core.config.MessageGetter;
+import com.dragonite.mc.dnmc.core.main.DragoniteMC;
+import com.dragonite.mc.dnmc.core.managers.CoreConfig;
+import com.dragonite.mc.dnmc.core.misc.commands.CommandNode;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -42,7 +42,7 @@ public abstract class ArenaCommandNode extends CommandNode {
 
     @Override
     public boolean executeCommand(@Nonnull CommandSender commandSender, @Nonnull List<String> list) {
-        CoreConfig coreConfig = DragonNiteMC.getAPI().getCoreConfig();
+        CoreConfig coreConfig = DragoniteMC.getAPI().getCoreConfig();
         String prefix = MinigamesCore.getApi().getGameManager().getGamePrefix();
         if (!(commandSender instanceof Player)) {
             commandSender.sendMessage(coreConfig.getPrefix() + coreConfig.getNotPlayer());

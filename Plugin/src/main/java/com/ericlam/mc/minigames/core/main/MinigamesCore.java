@@ -24,11 +24,11 @@ import com.ericlam.mc.minigames.core.manager.*;
 import com.ericlam.mc.minigames.core.registable.*;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.dragonnite.mc.dnmc.core.config.MessageGetter;
-import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
-import com.dragonnite.mc.dnmc.core.managers.CommandRegister;
-import com.dragonnite.mc.dnmc.core.managers.YamlManager;
-import com.dragonnite.mc.dnmc.core.managers.builder.AbstractInventoryBuilder;
+import com.dragonite.mc.dnmc.core.config.MessageGetter;
+import com.dragonite.mc.dnmc.core.main.DragoniteMC;
+import com.dragonite.mc.dnmc.core.managers.CommandRegister;
+import com.dragonite.mc.dnmc.core.managers.YamlManager;
+import com.dragonite.mc.dnmc.core.managers.builder.AbstractInventoryBuilder;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -99,7 +99,7 @@ public final class MinigamesCore extends JavaPlugin implements MinigamesAPI, Reg
     public void onLoad() {
         reg = this;
         pro = this;
-        configManager = DragonNiteMC.getAPI().getFactory().getConfigFactory(this)
+        configManager = DragoniteMC.getAPI().getFactory().getConfigFactory(this)
                 .register("config.yml", MGConfig.class)
                 .register("items.yml", ItemConfig.class)
                 .register("lang.yml", LangConfig.class)
@@ -185,7 +185,7 @@ public final class MinigamesCore extends JavaPlugin implements MinigamesAPI, Reg
             CoreGameManager coreGameManager = (CoreGameManager) gameManager;
             coreGameManager.initialize();
         });
-        CommandRegister register = DragonNiteMC.getAPI().getCommandRegister();
+        CommandRegister register = DragoniteMC.getAPI().getCommandRegister();
         register.registerCommand(this, new MinigameCommand());
         this.getLogger().info("Minigames-Core enabled.");
     }
@@ -288,11 +288,10 @@ public final class MinigamesCore extends JavaPlugin implements MinigamesAPI, Reg
 
     @EventHandler
     public void onGameStateSwitch(GameStateSwitchEvent e) {
-        try (Jedis jedis = DragonNiteMC.getAPI().getRedisDataSource().getJedis()) {
+        try (Jedis jedis = DragoniteMC.getAPI().getRedisDataSource().getJedis()) {
             Map<String, String> map = new HashMap<>();
             String serverName = System.getenv("SERVER_NAME");
             map.put(serverName, e.getGameState().toString());
-            MinigamesCore.getPlugin(MinigamesCore.class).getLogger().warning("Map：" + map.toString());
             jedis.hmset("game_room_states", map);
         }
     }

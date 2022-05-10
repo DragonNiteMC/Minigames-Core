@@ -1,9 +1,9 @@
 package com.ericlam.mc.minigames.core.implement;
 
 import com.ericlam.mc.minigames.core.commands.TpsRecordCommand;
-import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
-import com.dragonnite.mc.dnmc.core.managers.SQLDataSource;
-import com.dragonnite.mc.dnmc.core.misc.permission.Perm;
+import com.dragonite.mc.dnmc.core.main.DragoniteMC;
+import com.dragonite.mc.dnmc.core.managers.SQLDataSource;
+import com.dragonite.mc.dnmc.core.misc.permission.Perm;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
@@ -34,7 +34,7 @@ public final class TimingsSender implements CommandSender {
     private final SQLDataSource sqlDataSource;
 
     public TimingsSender() {
-        this.sqlDataSource = DragonNiteMC.getAPI().getSQLDataSource();
+        this.sqlDataSource = DragoniteMC.getAPI().getSQLDataSource();
         CompletableFuture.runAsync(() -> {
             try (Connection connection = sqlDataSource.getConnection();
                  PreparedStatement statement = connection.prepareStatement(createTable)) {

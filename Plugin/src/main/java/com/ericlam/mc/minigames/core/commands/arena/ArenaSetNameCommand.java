@@ -3,8 +3,8 @@ package com.ericlam.mc.minigames.core.commands.arena;
 import com.ericlam.mc.minigames.core.exception.arena.create.ArenaNameExistException;
 import com.ericlam.mc.minigames.core.exception.arena.create.ArenaNotExistException;
 import com.ericlam.mc.minigames.core.manager.ArenaCreateManager;
-import com.dragonnite.mc.dnmc.core.managers.YamlManager;
-import com.dragonnite.mc.dnmc.core.misc.commands.CommandNode;
+import com.dragonite.mc.dnmc.core.managers.YamlManager;
+import com.dragonite.mc.dnmc.core.misc.commands.CommandNode;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;

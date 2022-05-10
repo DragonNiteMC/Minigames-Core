@@ -3,9 +3,9 @@ package com.ericlam.mc.minigames.core.commands;
 import co.aikar.timings.Timings;
 import com.ericlam.mc.minigames.core.MinigamesAPI;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
-import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
-import com.dragonnite.mc.dnmc.core.misc.commands.CommandNode;
-import com.dragonnite.mc.dnmc.core.misc.permission.Perm;
+import com.dragonite.mc.dnmc.core.main.DragoniteMC;
+import com.dragonite.mc.dnmc.core.misc.commands.CommandNode;
+import com.dragonite.mc.dnmc.core.misc.permission.Perm;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -27,7 +27,7 @@ public final class TpsRecordCommand extends CommandNode {
     public boolean executeCommand(@Nonnull CommandSender commandSender, @Nonnull List<String> list) {
         Optional<MinigamesAPI> apiSafe = MinigamesCore.getApiSafe();
         if (apiSafe.isEmpty()) {
-            commandSender.sendMessage(DragonNiteMC.getAPI().getCoreConfig().getPrefix() + ChatColor.RED + "Minigames-API 沒有被啟動。");
+            commandSender.sendMessage(DragoniteMC.getAPI().getCoreConfig().getPrefix() + ChatColor.RED + "Minigames-API 沒有被啟動。");
             return true;
         }
         if (!Timings.isVerboseTimingsEnabled()) {

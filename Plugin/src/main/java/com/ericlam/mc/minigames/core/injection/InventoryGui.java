@@ -1,7 +1,7 @@
 package com.ericlam.mc.minigames.core.injection;
 
 import com.ericlam.mc.minigames.core.function.GameEntry;
-import com.dragonnite.mc.dnmc.core.managers.builder.AbstractInventoryBuilder;
+import com.dragonite.mc.dnmc.core.managers.builder.AbstractInventoryBuilder;
 
 import java.util.List;
 

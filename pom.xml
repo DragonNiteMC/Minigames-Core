@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dragonnite.mc</groupId>
+    <groupId>com.dragonite.mc</groupId>
     <artifactId>minigames-core</artifactId>
-    <version>0.1.14</version>
+    <version>0.1.15</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -28,7 +28,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.dragonnite.mc</groupId>
+            <groupId>com.dragonite.mc</groupId>
             <artifactId>core-api</artifactId>
         </dependency>
         <dependency>
@@ -96,9 +96,9 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>com.dragonnite.mc</groupId>
+                <groupId>com.dragonite.mc</groupId>
                 <artifactId>core-api</artifactId>
-                <version>7.6.5</version>
+                <version>7.6.6</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -150,7 +150,7 @@
                         <version>true</version>
                         <linksource>true</linksource>
                         <notimestamp>true</notimestamp>
-                        <bottom><![CDATA[<b>© DragonNiteMC - 2022</b>]]></bottom>
+                        <bottom><![CDATA[<b>© DragoniteMC - 2022</b>]]></bottom>
                         <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
                         <destDir>../docs</destDir>
                     </configuration>
@@ -176,11 +176,11 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.10.1</version>
                     <configuration>
-                        <release>11</release>
-                        <source>11</source>
-                        <target>11</target>
+                        <release>18</release>
+                        <source>18</source>
+                        <target>18</target>
                     </configuration>
                 </plugin>
                 <plugin>

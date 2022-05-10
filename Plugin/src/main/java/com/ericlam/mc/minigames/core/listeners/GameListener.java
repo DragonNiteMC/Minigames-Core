@@ -20,7 +20,7 @@ import com.ericlam.mc.minigames.core.game.InGameState;
 import com.ericlam.mc.minigames.core.implement.TimingsSender;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.ericlam.mc.minigames.core.manager.*;
-import com.dragonnite.mc.dnmc.core.managers.YamlManager;
+import com.dragonite.mc.dnmc.core.managers.YamlManager;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;

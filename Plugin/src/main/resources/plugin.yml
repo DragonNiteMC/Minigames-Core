@@ -1,7 +1,7 @@
 name: Minigames-Core
 main: com.ericlam.mc.minigames.core.main.MinigamesCore
 version: ${project.version}
-depend: [ DragonNiteMC-Core ]
+depend: [ DragoniteMC-Core ]
 softdepend:
   - CrackShot
   - CrackShotPlus

@@ -14,10 +14,10 @@ import com.ericlam.mc.minigames.core.implement.ArenaInfo;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
-import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
-import com.dragonnite.mc.dnmc.core.managers.YamlManager;
-import com.dragonnite.mc.dnmc.core.misc.world.WorldLoadedException;
-import com.dragonnite.mc.dnmc.core.misc.world.WorldNonExistException;
+import com.dragonite.mc.dnmc.core.main.DragoniteMC;
+import com.dragonite.mc.dnmc.core.managers.YamlManager;
+import com.dragonite.mc.dnmc.core.misc.world.WorldLoadedException;
+import com.dragonite.mc.dnmc.core.misc.world.WorldNonExistException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.bukkit.Bukkit;
@@ -93,7 +93,7 @@ public final class CoreArenaManager implements ArenaManager {
         arenas.stream().filter(a -> !a.getWorld().equals(finalArena.getWorld())).forEach(remainArena -> Bukkit.getScheduler().runTask(plugin, () -> {
             World world = remainArena.getWorld();
             try {
-                boolean result = DragonNiteMC.getAPI().getWorldManager().unloadWorld(world.getName());
+                boolean result = DragoniteMC.getAPI().getWorldManager().unloadWorld(world.getName());
                 plugin.getLogger().info((result ? "成功卸載" : "卸載失敗") + " 世界 " + world.getName());
             } catch (WorldNonExistException e) {
                 plugin.getLogger().warning("Error: world " + e.getWorld() + " not exist, cannot unload arena " + remainArena.getArenaName());
@@ -190,7 +190,7 @@ public final class CoreArenaManager implements ArenaManager {
     private CompletableFuture<CreateArena> loadArenaFromFile(File arenaFile, String arena) {
         return this.preLoadArenaFromFile(arenaFile, arena).thenComposeAsync(preLoadedArena -> {
             try {
-                return DragonNiteMC.getAPI().getWorldManager().loadWorld(preLoadedArena.worldName).thenApply(world -> {
+                return DragoniteMC.getAPI().getWorldManager().loadWorld(preLoadedArena.worldName).thenApply(world -> {
                     if (world != null) {
                         Bukkit.getScheduler().runTask(plugin, () -> {
                             world.setGameRule(GameRule.SHOW_DEATH_MESSAGES, false);

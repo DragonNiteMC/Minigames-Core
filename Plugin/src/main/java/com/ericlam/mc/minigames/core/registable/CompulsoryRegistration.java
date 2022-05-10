@@ -8,10 +8,10 @@ import com.ericlam.mc.minigames.core.character.GamePlayerHandler;
 import com.ericlam.mc.minigames.core.commands.arena.*;
 import com.ericlam.mc.minigames.core.function.GameEntry;
 import com.ericlam.mc.minigames.core.gamestats.GameStatsHandler;
-import com.dragonnite.mc.dnmc.core.main.DragonNiteMC;
-import com.dragonnite.mc.dnmc.core.managers.YamlManager;
-import com.dragonnite.mc.dnmc.core.managers.builder.AbstractInventoryBuilder;
-import com.dragonnite.mc.dnmc.core.misc.commands.DefaultCommand;
+import com.dragonite.mc.dnmc.core.main.DragoniteMC;
+import com.dragonite.mc.dnmc.core.managers.YamlManager;
+import com.dragonite.mc.dnmc.core.managers.builder.AbstractInventoryBuilder;
+import com.dragonite.mc.dnmc.core.misc.commands.DefaultCommand;
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -69,7 +69,7 @@ public final class CompulsoryRegistration implements Compulsory {
         defaultCommand.addSub(new SetLobbyLocationCommand(configManager, defaultCommand));
         defaultCommand.addSub(new ArenaAddStoryLineCommand(configManager, defaultCommand));
         defaultCommand.addSub(new ArenaRemoveStoryLineCommand(configManager, defaultCommand));
-        DragonNiteMC.getAPI().getCommandRegister().registerCommand(plugin, defaultCommand);
+        DragoniteMC.getAPI().getCommandRegister().registerCommand(plugin, defaultCommand);
     }
 
     @Override

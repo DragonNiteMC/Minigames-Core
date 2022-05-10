@@ -3,9 +3,9 @@ package com.ericlam.mc.minigames.core.commands.arena;
 import com.ericlam.mc.minigames.core.commands.ArenaCommandNode;
 import com.ericlam.mc.minigames.core.config.LangConfig;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
-import com.dragonnite.mc.dnmc.core.managers.YamlManager;
-import com.dragonnite.mc.dnmc.core.misc.commands.CommandNode;
-import com.dragonnite.mc.dnmc.core.misc.permission.Perm;
+import com.dragonite.mc.dnmc.core.managers.YamlManager;
+import com.dragonite.mc.dnmc.core.misc.commands.CommandNode;
+import com.dragonite.mc.dnmc.core.misc.permission.Perm;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;

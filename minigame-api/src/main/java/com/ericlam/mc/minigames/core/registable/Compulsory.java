@@ -5,8 +5,8 @@ import com.ericlam.mc.minigames.core.arena.ArenaConfig;
 import com.ericlam.mc.minigames.core.arena.ArenaMechanic;
 import com.ericlam.mc.minigames.core.character.GamePlayerHandler;
 import com.ericlam.mc.minigames.core.gamestats.GameStatsHandler;
-import com.dragonnite.mc.dnmc.core.managers.builder.AbstractInventoryBuilder;
-import com.dragonnite.mc.dnmc.core.misc.commands.DefaultCommand;
+import com.dragonite.mc.dnmc.core.managers.builder.AbstractInventoryBuilder;
+import com.dragonite.mc.dnmc.core.misc.commands.DefaultCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nonnull;
