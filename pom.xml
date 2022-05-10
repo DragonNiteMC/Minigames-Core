@@ -138,7 +138,7 @@
                             <link>https://hypernitemc.github.io/core-api/</link>
                             <link>https://guava.dev/releases/23.0/api/docs/</link>
                         </links>
-                        <javadocExecutable>${java.home}\bin\javadoc.exe</javadocExecutable>
+                        <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
                         <show>public</show>
                         <linksource>true</linksource>
                         <isOffline>false</isOffline>
