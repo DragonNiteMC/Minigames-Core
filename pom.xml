@@ -3,7 +3,7 @@
 
     <groupId>com.dragonite.mc</groupId>
     <artifactId>minigames-core</artifactId>
-    <version>0.1.15</version>
+    <version>0.1.16</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -114,6 +114,11 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.0.0-M2</version>
+                </plugin>
+                <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.2.0</version>
                     <configuration>
@@ -210,4 +215,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-dnmc</id>
+            <url>https://nexus.pulogo.xyz/repository/dnmc/</url>
+        </repository>
+    </distributionManagement>
 </project>

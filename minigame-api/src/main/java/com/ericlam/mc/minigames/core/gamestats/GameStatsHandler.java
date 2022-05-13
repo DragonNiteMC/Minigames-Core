@@ -4,6 +4,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
+import java.sql.Timestamp;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -37,5 +38,23 @@ public interface GameStatsHandler {
      * @return 異步運行
      */
     CompletableFuture<Void> saveGameStatsData(Map<OfflinePlayer, GameStats> gameStatsMap);
+
+
+    /**
+     * 定義如何保存遊戲記錄
+     * @param player 玩家
+     * @param stats 遊戲玩家資料
+     * @param timeStamp 遊戲時間戳記
+     * @return 異步運行
+     */
+    CompletableFuture<Void> saveGameStatsRecord(OfflinePlayer player, GameStats stats, Timestamp timeStamp);
+
+    /**
+     * 定義如何保存所有遊戲玩家記錄
+     * @param gameStatsMap 遊戲玩家資料列表
+     * @param timeStampMap 遊戲時間戳記列表
+     * @return 異步運行
+     */
+    CompletableFuture<Void> saveGameStatsRecord(Map<OfflinePlayer, GameStats> gameStatsMap, Map<OfflinePlayer, Timestamp> timeStampMap);
 
 }

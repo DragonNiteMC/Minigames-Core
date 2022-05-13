@@ -2,6 +2,7 @@ package com.ericlam.mc.minigames.core.manager;
 
 import com.ericlam.mc.minigames.core.character.GamePlayer;
 import com.ericlam.mc.minigames.core.exception.gamestats.PlayerNotExistException;
+import com.ericlam.mc.minigames.core.gamestats.GameStats;
 import com.ericlam.mc.minigames.core.gamestats.GameStatsEditor;
 import com.ericlam.mc.minigames.core.gamestats.GameStatsHandler;
 import com.google.inject.Inject;
@@ -9,14 +10,20 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class CoreGameStatsManager implements GameStatsManager {
 
-    private final Map<OfflinePlayer, GameStatsEditor> gameStatsEditorMap = new HashMap<>();
+    private final Map<OfflinePlayer, GameStatsEditor> gameStatsEditorMap = new ConcurrentHashMap<>();
+    private final Map<OfflinePlayer, GameStats> originalStatsMap = new ConcurrentHashMap<>();
+    private final Map<OfflinePlayer, Timestamp> playedTimeStamps = new ConcurrentHashMap<>();
+
     @Inject
     private GameStatsHandler gameStatsHandler;
     @Inject
@@ -155,17 +162,43 @@ public final class CoreGameStatsManager implements GameStatsManager {
     @Override
     public CompletableFuture<Boolean> loadGameStats(GamePlayer player) {
         if (gameStatsEditorMap.containsKey(player.getPlayer())) return CompletableFuture.completedFuture(false);
-        return CompletableFuture.supplyAsync(() -> gameStatsHandler.loadGameStatsData(player.getPlayer())).thenApply(gameStatsEditor -> this.gameStatsEditorMap.put(player.getPlayer(), gameStatsEditor) == null);
+        return CompletableFuture.supplyAsync(() -> gameStatsHandler.loadGameStatsData(player.getPlayer())).thenApply(gameStatsEditor -> {
+            var original = gameStatsEditor.clone();
+            this.originalStatsMap.put(player.getPlayer(), original);
+            this.gameStatsEditorMap.put(player.getPlayer(), gameStatsEditor);
+            this.playedTimeStamps.put(player.getPlayer(), Timestamp.from(Instant.now()));
+            return true;
+        });
     }
 
     @Override
     public CompletableFuture<Void> saveAll() {
-        return gameStatsHandler.saveGameStatsData(Map.copyOf(gameStatsEditorMap));
+
+        var saveStats =  gameStatsHandler.saveGameStatsData(Map.copyOf(gameStatsEditorMap));
+
+        var recordsMap = new HashMap<OfflinePlayer, GameStats>();
+
+        originalStatsMap.forEach((player, original) -> {
+
+            if (!gameStatsEditorMap.containsKey(player)) return;
+
+            var current = gameStatsEditorMap.get(player);
+
+            recordsMap.put(player, current.minus(original));
+
+        });
+
+        var saveRecords = gameStatsHandler.saveGameStatsRecord(recordsMap, playedTimeStamps);
+
+        return CompletableFuture.allOf(saveStats, saveRecords);
     }
 
     @Override
     public CompletableFuture<Void> savePlayer(OfflinePlayer player) throws PlayerNotExistException {
         GameStatsEditor editor = validate(player);
-        return gameStatsHandler.saveGameStatsData(player, editor);
+        GameStats record = editor.minus(originalStatsMap.get(player));
+        var saveStats =  gameStatsHandler.saveGameStatsData(player, editor);
+        var saveRecords = gameStatsHandler.saveGameStatsRecord(player, record, playedTimeStamps.getOrDefault(player, Timestamp.from(Instant.now())));
+        return CompletableFuture.allOf(saveStats, saveRecords);
     }
 }
