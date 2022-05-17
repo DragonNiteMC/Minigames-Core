@@ -214,7 +214,7 @@ public final class GameListener implements Listener {
         }
         if (!(entity instanceof Player)) return;
         Player killer = (Player) entity;
-        if (MinigamesCore.isCrackShotPlusEnabled() && CrackshotListener.isCrackShot(killer, e.getDamager())) return;
+        if (MinigamesCore.isWeaponMechanicsEnabled() && WeaponMechanicListener.isWeaponMechanic(killer)) return;
         if (e.getFinalDamage() < victim.getHealth()) return;
         e.setCancelled(true);
         GamePlayer gameKiller = playerManager.findPlayer(killer).orElse(null);

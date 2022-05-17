@@ -3,7 +3,7 @@
 
     <groupId>com.dragonite.mc</groupId>
     <artifactId>minigames-core</artifactId>
-    <version>0.1.16</version>
+    <version>0.1.17-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -45,6 +45,18 @@
         <dependencies>
             <dependency>
                 <groupId>org.spigotmc</groupId>
+                <artifactId>MechanicsCore</artifactId>
+                <version>1.2.2-BETA</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.spigotmc</groupId>
+                <artifactId>WeaponMechanics</artifactId>
+                <version>1.7.1-BETA</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.spigotmc</groupId>
                 <artifactId>protocolib</artifactId>
                 <version>4.8.0</version>
                 <scope>provided</scope>
@@ -82,18 +94,6 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>2.11.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.spigotmc</groupId>
-                <artifactId>crackshot</artifactId>
-                <version>0.98.11</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.spigotmc</groupId>
-                <artifactId>crackshotplus</artifactId>
-                <version>1.105</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.dragonite.mc</groupId>
@@ -221,5 +221,10 @@
             <id>nexus-dnmc</id>
             <url>https://nexus.pulogo.xyz/repository/dnmc/</url>
         </repository>
+        <snapshotRepository>
+            <id>nexus-dnmc</id>
+            <url>https://nexus.pulogo.xyz/repository/dnmc-snapshot/</url>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
     </distributionManagement>
 </project>

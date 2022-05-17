@@ -57,9 +57,9 @@ public class GamePlayerDeathEvent extends GamePlayerEvent {
         /**
          * 槍械射死
          *
-         * @see CrackShotDeathEvent
+         * @see WeaponMechanicsDeathEvent
          */
-        CRACKSHOT,
+        WEAPON_MECHANICS,
 
         /**
          * 普通傷害

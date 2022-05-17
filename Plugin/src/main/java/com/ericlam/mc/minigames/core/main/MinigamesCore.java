@@ -48,7 +48,7 @@ public final class MinigamesCore extends JavaPlugin implements MinigamesAPI, Reg
     private static Properties pro;
     private static YamlManager configManager;
     private static boolean packetWrapperEnabled = false;
-    private static boolean crackShotPlusEnabled = false;
+    private static boolean weaponMechanicsEnabled = false;
     private final MinigamesModule minigamesModule = new MinigamesModule();
     private final VoluntaryRegistration voluntary = new VoluntaryRegistration();
     private final GameFactory gameFactory = new CoreGameFactory();
@@ -91,8 +91,8 @@ public final class MinigamesCore extends JavaPlugin implements MinigamesAPI, Reg
         return packetWrapperEnabled;
     }
 
-    public static boolean isCrackShotPlusEnabled() {
-        return crackShotPlusEnabled;
+    public static boolean isWeaponMechanicsEnabled() {
+        return weaponMechanicsEnabled;
     }
 
     @Override
@@ -113,7 +113,7 @@ public final class MinigamesCore extends JavaPlugin implements MinigamesAPI, Reg
     @Override
     public void onEnable() {
         packetWrapperEnabled = getServer().getPluginManager().isPluginEnabled("PacketWrapper");
-        crackShotPlusEnabled = getServer().getPluginManager().isPluginEnabled("CrackShotPlus");
+        weaponMechanicsEnabled = getServer().getPluginManager().isPluginEnabled("WeaponMechanics");
         this.getServer().getScheduler().runTask(this, () -> {
             this.getLogger().info("Initializing Minigames-Api...");
             GameEntry<AbstractInventoryBuilder, List<Integer>> voteGUI = compulsory.getVoteGUI();

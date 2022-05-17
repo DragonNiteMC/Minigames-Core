@@ -11,8 +11,8 @@ import com.ericlam.mc.minigames.core.game.GameState;
 import com.ericlam.mc.minigames.core.game.GameTeam;
 import com.ericlam.mc.minigames.core.game.InGameState;
 import com.ericlam.mc.minigames.core.injection.GameProgramTasks;
-import com.ericlam.mc.minigames.core.listeners.CrackshotListener;
 import com.ericlam.mc.minigames.core.listeners.GameListener;
+import com.ericlam.mc.minigames.core.listeners.WeaponMechanicListener;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
@@ -77,9 +77,9 @@ public final class CoreGameManager implements GameManager {
                     plugin.getLogger().info("PacketWrapper is enabled. Enabled individual score in scoreboard.");
                     ProtocolLibrary.getProtocolManager().addPacketListener(new IndividualScorePacketListener(plugin));
                 }
-                if (MinigamesCore.isCrackShotPlusEnabled()) {
-                    plugin.getLogger().info("CrackShotPlus is enabled. Enabled CrackShotListener");
-                    plugin.getServer().getPluginManager().registerEvents(new CrackshotListener((MinigamesCore) plugin), plugin);
+                if (MinigamesCore.isWeaponMechanicsEnabled()) {
+                    plugin.getLogger().info("WeaponMechanics is enabled. Enabled WeaponMechanicsListener");
+                    plugin.getServer().getPluginManager().registerEvents(new WeaponMechanicListener((MinigamesCore) plugin), plugin);
                 }
                 plugin.getLogger().info("Game Activated");
                 this.activated = true;
