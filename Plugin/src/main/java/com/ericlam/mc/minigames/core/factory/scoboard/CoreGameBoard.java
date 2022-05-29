@@ -100,6 +100,7 @@ public final class CoreGameBoard implements GameBoard {
             createTeam.setColor(finalTeam.getColor());
             createTeam.setPrefix(finalTeam.getColor().toString());
             createTeam.setAllowFriendlyFire(finalTeam.isEnabledFriendlyFire());
+            createTeam.setCanSeeFriendlyInvisibles(finalTeam.isEnabledFriendlyInvisibles());
             Optional.ofNullable(optionMap.get(finalTeam)).ifPresent(m -> m.forEach(createTeam::setOption));
             return createTeam;
         });

@@ -44,7 +44,7 @@
     </dependencies>
 
     <build>
-        <finalName>${parent.artifactId}-${project.version}</finalName>
+        <finalName>${parent.artifactId}-${project.version}.1</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
