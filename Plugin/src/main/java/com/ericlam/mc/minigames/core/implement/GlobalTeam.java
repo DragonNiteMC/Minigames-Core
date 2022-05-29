@@ -18,4 +18,9 @@ public final class GlobalTeam implements GameTeam {
     public boolean isEnabledFriendlyFire() {
         return true;
     }
+
+    @Override
+    public boolean isEnabledFriendlyInvisibles() {
+        return false;
+    }
 }

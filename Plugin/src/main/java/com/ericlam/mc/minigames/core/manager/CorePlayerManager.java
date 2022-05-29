@@ -6,6 +6,8 @@ import com.ericlam.mc.minigames.core.config.LangConfig;
 import com.ericlam.mc.minigames.core.main.MinigamesCore;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -91,7 +93,7 @@ public final class CorePlayerManager implements PlayerManager {
         if (!should) {
             int remain = gamePlayerHandler.requireStart() - this.getWaitingPlayer().size();
             String need = MinigamesCore.getConfigManager().getConfigAs(LangConfig.class).getPure("need-players").replace("<remain>", remain + "");
-            Bukkit.broadcastMessage(MinigamesCore.getPlugin(MinigamesCore.class).getGamePrefix() + need);
+            this.getWaitingPlayer().forEach(p -> p.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(need)));
         }
         return should;
     }

@@ -27,4 +27,9 @@ public interface GameTeam extends Castable<GameTeam> {
      */
     boolean isEnabledFriendlyFire();
 
+    /**
+     * @return 是否開啟看見隱形隊友
+     */
+    boolean isEnabledFriendlyInvisibles();
+
 }
