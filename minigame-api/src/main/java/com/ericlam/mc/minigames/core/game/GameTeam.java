@@ -2,6 +2,7 @@ package com.ericlam.mc.minigames.core.game;
 
 import com.ericlam.mc.minigames.core.function.Castable;
 import org.bukkit.ChatColor;
+import org.bukkit.scoreboard.Team;
 
 /**
  * 隊伍容器接口
@@ -28,8 +29,10 @@ public interface GameTeam extends Castable<GameTeam> {
     boolean isEnabledFriendlyFire();
 
     /**
-     * @return 是否開啟看見隱形隊友
+     * 隊伍創建的時候設定
+     * @param team 隊伍
      */
-    boolean isEnabledFriendlyInvisibles();
+    default void onTeamCreate(Team team){
+    }
 
 }
